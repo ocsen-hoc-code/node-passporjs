@@ -7,7 +7,15 @@ facebookRouter.get('/auth/facebook/callback', passport.authenticate('facebook', 
     successRedirect: '/success',
     failureRedirect: '/fail'
 }));
-facebookRouter.get('/success', (req, res) => { res.status(200).send('Susscess') });
-facebookRouter.get('/fail', (req, res) => { res.status(200).send('Fail') });
+
+facebookRouter.get('/success', (req, res) => {
+    console.log('req.user', req.user);
+    if (req.isAuthenticated()) {
+        res.status(200).send('Susscess');
+    } else {
+        res.redirect('/fail');
+    }
+});
+facebookRouter.get('/fail', (req, res) => { res.status(200).send('Fail'); });
 
 export default facebookRouter;

@@ -11,7 +11,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (obj, done) {
-    done(null, obj);
+    done(null, { ...obj, extra_data: 'test extra data' });
 });
 
 passport.use(
@@ -23,9 +23,6 @@ passport.use(
             profileFields: ["email", "name"]
         },
         function (accessToken, refreshToken, profile, done) {
-            console.log('accessToken', accessToken);
-            console.log('refreshToken', refreshToken);
-            console.log('profile', profile);
             done(null, profile);
         }
     )
