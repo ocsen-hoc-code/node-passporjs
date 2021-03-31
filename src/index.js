@@ -14,7 +14,7 @@ const REDIS_PORT = process.env.REDIS_PORT || 6379;
 const REDIS_PASSWORD = process.env.REDIS_PASSWORD || 'i dont know';
 
 const redisStore = RedisStore(session);
-const redisClient = redis.createClient({ host: '127.0.0.1', port: 6379, password: 'ocsen-hoc-code' });
+const redisClient = redis.createClient({ host: REDIS_HOST, port: REDIS_PORT, password: REDIS_PASSWORD });
 
 const app = express();
 app.use(session({
