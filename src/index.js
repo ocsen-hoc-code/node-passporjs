@@ -29,6 +29,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', facebookRouter);
+app.use('/', (req, res) => {
+    res.status(200).json({ msg: 'Hello OcSen!' });
+});
 
 app.listen(PORT, () => {
     console.log(`Service startup: http://localhost:${PORT}`);

@@ -16,6 +16,15 @@ facebookRouter.get('/success', (req, res) => {
         res.redirect('/fail');
     }
 });
+
 facebookRouter.get('/fail', (req, res) => { res.status(200).send('Fail'); });
+
+facebookRouter.get('/profile', (req, res) => {
+    if (req.isAuthenticated()) {
+        res.status(200).json(req.user);
+    } else {
+        res.redirect('/fail');
+    }
+});
 
 export default facebookRouter;
